@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://prpa.gobierno.pr/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://prpa.gobierno.pr/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://prpa.gobierno.pr/">
+      <s:element name="Get_San_Juan_Cruisers_7_Days">
+        <s:complexType />
+      </s:element>
+      <s:element name="Get_San_Juan_Cruisers_7_DaysResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Get_San_Juan_Cruisers_7_DaysResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DataTable" nillable="true">
+        <s:complexType>
+          <s:sequence>
+            <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+            <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="Get_San_Juan_Cruisers_7_DaysSoapIn">
+    <wsdl:part name="parameters" element="tns:Get_San_Juan_Cruisers_7_Days" />
+  </wsdl:message>
+  <wsdl:message name="Get_San_Juan_Cruisers_7_DaysSoapOut">
+    <wsdl:part name="parameters" element="tns:Get_San_Juan_Cruisers_7_DaysResponse" />
+  </wsdl:message>
+  <wsdl:message name="Get_San_Juan_Cruisers_7_DaysHttpGetIn" />
+  <wsdl:message name="Get_San_Juan_Cruisers_7_DaysHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:message name="Get_San_Juan_Cruisers_7_DaysHttpPostIn" />
+  <wsdl:message name="Get_San_Juan_Cruisers_7_DaysHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataTable" />
+  </wsdl:message>
+  <wsdl:portType name="PRPAWSSoap">
+    <wsdl:operation name="Get_San_Juan_Cruisers_7_Days">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listado de Cruceros, Viejo San Juan, siguientes 7 dias.</wsdl:documentation>
+      <wsdl:input message="tns:Get_San_Juan_Cruisers_7_DaysSoapIn" />
+      <wsdl:output message="tns:Get_San_Juan_Cruisers_7_DaysSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="PRPAWSHttpGet">
+    <wsdl:operation name="Get_San_Juan_Cruisers_7_Days">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listado de Cruceros, Viejo San Juan, siguientes 7 dias.</wsdl:documentation>
+      <wsdl:input message="tns:Get_San_Juan_Cruisers_7_DaysHttpGetIn" />
+      <wsdl:output message="tns:Get_San_Juan_Cruisers_7_DaysHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="PRPAWSHttpPost">
+    <wsdl:operation name="Get_San_Juan_Cruisers_7_Days">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listado de Cruceros, Viejo San Juan, siguientes 7 dias.</wsdl:documentation>
+      <wsdl:input message="tns:Get_San_Juan_Cruisers_7_DaysHttpPostIn" />
+      <wsdl:output message="tns:Get_San_Juan_Cruisers_7_DaysHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PRPAWSSoap" type="tns:PRPAWSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Get_San_Juan_Cruisers_7_Days">
+      <soap:operation soapAction="http://prpa.gobierno.pr/Get_San_Juan_Cruisers_7_Days" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PRPAWSSoap12" type="tns:PRPAWSSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Get_San_Juan_Cruisers_7_Days">
+      <soap12:operation soapAction="http://prpa.gobierno.pr/Get_San_Juan_Cruisers_7_Days" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PRPAWSHttpGet" type="tns:PRPAWSHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="Get_San_Juan_Cruisers_7_Days">
+      <http:operation location="/Get_San_Juan_Cruisers_7_Days" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PRPAWSHttpPost" type="tns:PRPAWSHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="Get_San_Juan_Cruisers_7_Days">
+      <http:operation location="/Get_San_Juan_Cruisers_7_Days" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PRPAWS">
+    <wsdl:port name="PRPAWSSoap" binding="tns:PRPAWSSoap">
+      <soap:address location="http://localhost:1234/ws/PRPAWS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PRPAWSSoap12" binding="tns:PRPAWSSoap12">
+      <soap12:address location="http://localhost:1234/ws/PRPAWS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PRPAWSHttpGet" binding="tns:PRPAWSHttpGet">
+      <http:address location="http://localhost:1234/ws/PRPAWS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PRPAWSHttpPost" binding="tns:PRPAWSHttpPost">
+      <http:address location="http://localhost:1234/ws/PRPAWS.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
