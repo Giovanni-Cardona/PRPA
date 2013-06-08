@@ -114,16 +114,16 @@
   </wsdl:binding>
   <wsdl:service name="PRPAWS">
     <wsdl:port name="PRPAWSSoap" binding="tns:PRPAWSSoap">
-      <soap:address location="http://localhost:1234/ws/PRPAWS.asmx" />
+      <soap:address location="http://192.168.1.122/dsms/ws/prpaws.asmx" />
     </wsdl:port>
     <wsdl:port name="PRPAWSSoap12" binding="tns:PRPAWSSoap12">
-      <soap12:address location="http://localhost:1234/ws/PRPAWS.asmx" />
+      <soap12:address location="http://192.168.1.122/dsms/ws/prpaws.asmx" />
     </wsdl:port>
     <wsdl:port name="PRPAWSHttpGet" binding="tns:PRPAWSHttpGet">
-      <http:address location="http://localhost:1234/ws/PRPAWS.asmx" />
+      <http:address location="http://192.168.1.122/dsms/ws/prpaws.asmx" />
     </wsdl:port>
     <wsdl:port name="PRPAWSHttpPost" binding="tns:PRPAWSHttpPost">
-      <http:address location="http://localhost:1234/ws/PRPAWS.asmx" />
+      <http:address location="http://192.168.1.122/dsms/ws/prpaws.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
