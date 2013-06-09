@@ -434,9 +434,7 @@ Sys.WebForms.PageRequestManager.getInstance()._updateControls(['tctl00$panelZone
 //2013 (c)
 // Leonardo, Juan y Pedro Cardona
 // Juan de Dios Santos
-//
-
-
+error_reporting(E_ERROR | E_PARSE);
 function padTime( $timeString ) {
 
 return str_pad($timeString, 2, "0", STR_PAD_LEFT ) ;
@@ -451,12 +449,18 @@ function dateConvert($x_date){
 		$x_year = $x_date[2];
 		return ($x_months[$x_month]." ".$x_day. ", ".$x_year);
 	}
+	
+	
+require_once('nusoap.php');
+$client = new soapclient2("http://192.168.1.122/dsms/ws/prpaws.asmx?wsdl", array('cache_wsdl' => WSDL_CACHE_NONE)) ;
 
-$client = new SoapClient("https://dsms.prpa.gobierno.pr/ws/prpaws.asmx?WSDL") ;
-$result = $client->Get_San_Juan_Cruisers_7_Days() ;
-
-libxml_use_internal_errors(false) ;
-//$result = simplexml_load_file("dummydata2.xml") ;
+try {
+	$result = $client->call("Get_San_Juan_Cruisers_7_Days") ;
+	$xmldata = $result[Get_San_Juan_Cruisers_7_DaysResult][diffgram][NewDataSet][CRUISE_ARRIVALS] ;
+} catch(SoapFault $s)
+{
+	print_r($s) ;
+}
 
 echo "<br>" ;
 echo "<table border=\"2px\" width=100%>";
@@ -464,16 +468,16 @@ echo "<th bgcolor=\"b64c75\" style=\"color:white\">Ship Name</th>
 	<th bgcolor=\"b64c75\" style=\"color:white\"> Date of Arrival</th>
 	<th bgcolor=\"b64c75\" style=\"color:white\"> Time of Arrival</th>
 	<th bgcolor=\"b64c75\" style=\"color:white\">Arriving on dock:</th>" ;
-foreach( $result->NewDataSet->CRUISE_ARRIVALS as $estb) {
-	$date = date_parse($estb->ARRIVAL) ;
-	$arrivalDate = dateConvert($date["day"] . ("/") . $date["month"] . "/" . $date["year"])	  ;
+foreach( $xmldata as $estb) {
+	$date = date_parse($estb[ARRIVAL]) ;
+	$arrivalDate = dateConvert($date["month"] . ("/") . $date["day"] . "/" . $date["year"])	  ;
 	$arrivalHour = "" ;
 	$arrivalHour = padTime($date["hour"]) . ":" .  padTime($date["minute"]) ;
 
 
 	echo "<tr>";
 	echo "<td>" ;
-	echo $estb->SHIP_NAME ;
+	echo $estb[SHIP_NAME] ;
 	echo "</td>" ;
 	
 	echo "<td>" ;
@@ -485,7 +489,7 @@ foreach( $result->NewDataSet->CRUISE_ARRIVALS as $estb) {
 	echo "</td>" ;	
 	
 	echo "<td>" ;
-	echo $estb->DOCK_NAME ;
+	echo $estb[DOCK_NAME] ;
 	echo "</td>" ;	
 	
 	echo "</tr>" ;	
